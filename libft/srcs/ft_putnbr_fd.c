@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_select.h                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbrigett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/12 19:04:03 by jbrigett          #+#    #+#             */
-/*   Updated: 2020/08/12 19:10:44 by jbrigett         ###   ########.fr       */
+/*   Created: 2019/09/15 17:49:38 by jbrigett          #+#    #+#             */
+/*   Updated: 2019/09/18 15:19:11 by jbrigett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SELECT_H
-# define FT_SELECT_H
+#include "libft.h"
 
-# include "termcap.h"
-# include <stdlib.h>
+void	ft_putnbr_fd(int n, int fd)
+{
+	unsigned int res;
 
-#endif
+	res = (n < 0 ? -n : n);
+	if (n < 0)
+		ft_putchar_fd('-', fd);
+	if (res > 9)
+	{
+		ft_putnbr_fd((res / 10), fd);
+		ft_putchar_fd((res % 10 + '0'), fd);
+	}
+	else
+		ft_putchar_fd((res + '0'), fd);
+}

@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_select.h                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbrigett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/12 19:04:03 by jbrigett          #+#    #+#             */
-/*   Updated: 2020/08/12 19:10:44 by jbrigett         ###   ########.fr       */
+/*   Created: 2019/09/07 15:46:50 by jbrigett          #+#    #+#             */
+/*   Updated: 2019/09/18 18:31:46 by jbrigett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SELECT_H
-# define FT_SELECT_H
+#include "libft.h"
 
-# include "termcap.h"
-# include <stdlib.h>
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+{
+	unsigned int i;
 
-#endif
+	i = 0;
+	if (!s || !(*s) || !f)
+		return ;
+	while (s[i])
+	{
+		f(i, &s[i]);
+		i++;
+	}
+}

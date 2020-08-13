@@ -1,19 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_select.h                                        :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbrigett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/12 19:04:03 by jbrigett          #+#    #+#             */
-/*   Updated: 2020/08/12 19:10:44 by jbrigett         ###   ########.fr       */
+/*   Created: 2019/09/07 15:49:17 by jbrigett          #+#    #+#             */
+/*   Updated: 2019/09/08 15:15:38 by jbrigett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SELECT_H
-# define FT_SELECT_H
+#include "libft.h"
 
-# include "termcap.h"
-# include <stdlib.h>
+char	*ft_strmap(char const *s, char (*f)(char))
+{
+	size_t	len;
+	char	*fresh;
 
-#endif
+	if (!s)
+		return (NULL);
+	len = ft_strlen(s);
+	fresh = (char*)malloc(sizeof(*fresh) * (len + 1));
+	if (!fresh)
+		return (NULL);
+	len = 0;
+	while (s[len] != '\0')
+	{
+		fresh[len] = f(s[len]);
+		len++;
+	}
+	fresh[len] = '\0';
+	return (fresh);
+}

@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_select.h                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbrigett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/12 19:04:03 by jbrigett          #+#    #+#             */
-/*   Updated: 2020/08/12 19:10:44 by jbrigett         ###   ########.fr       */
+/*   Created: 2019/09/11 14:09:50 by jbrigett          #+#    #+#             */
+/*   Updated: 2019/09/18 21:10:50 by jbrigett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SELECT_H
-# define FT_SELECT_H
+#include "libft.h"
 
-# include "termcap.h"
-# include <stdlib.h>
+char	*ft_strdup(const char *s1)
+{
+	char *tmp;
 
-#endif
+	if (ft_strlen(s1) + 1 == 0)
+		return (NULL);
+	tmp = (char*)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (!tmp)
+		return (NULL);
+	ft_strcpy(tmp, s1);
+	return (tmp);
+}

@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_select.h                                        :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbrigett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/12 19:04:03 by jbrigett          #+#    #+#             */
-/*   Updated: 2020/08/12 19:10:44 by jbrigett         ###   ########.fr       */
+/*   Created: 2019/09/16 19:40:42 by jbrigett          #+#    #+#             */
+/*   Updated: 2019/09/16 21:14:33 by jbrigett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SELECT_H
-# define FT_SELECT_H
+#include "libft.h"
 
-# include "termcap.h"
-# include <stdlib.h>
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
+{
+	t_list	*tmp;
+	t_list	*t;
 
-#endif
+	if (alst)
+	{
+		t = *alst;
+		while (t)
+		{
+			tmp = t->next;
+			ft_lstdelone(&t, del);
+			t = tmp;
+		}
+		*alst = NULL;
+	}
+}

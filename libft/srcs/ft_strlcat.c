@@ -1,19 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_select.h                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbrigett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/12 19:04:03 by jbrigett          #+#    #+#             */
-/*   Updated: 2020/08/12 19:10:44 by jbrigett         ###   ########.fr       */
+/*   Created: 2019/09/10 12:22:10 by jbrigett          #+#    #+#             */
+/*   Updated: 2019/09/10 13:27:02 by jbrigett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SELECT_H
-# define FT_SELECT_H
+#include "libft.h"
 
-# include "termcap.h"
-# include <stdlib.h>
+size_t	ft_strlcat(char *dst, const char *src, size_t n)
+{
+	size_t		size;
+	char		*d;
+	const char	*s;
+	size_t		len;
 
-#endif
+	size = n;
+	d = dst;
+	s = src;
+	while (size-- != 0 && *d != '\0')
+		d++;
+	len = d - dst;
+	n -= len;
+	if (n == 0)
+		return (d - dst + ft_strlen(s));
+	while (*s != '\0')
+	{
+		if (n != 1)
+		{
+			*d++ = *s;
+			n--;
+		}
+		s++;
+	}
+	*d = '\0';
+	return (len + (s - src));
+}

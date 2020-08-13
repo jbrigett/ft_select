@@ -1,19 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_select.h                                        :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbrigett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/12 19:04:03 by jbrigett          #+#    #+#             */
-/*   Updated: 2020/08/12 19:10:44 by jbrigett         ###   ########.fr       */
+/*   Created: 2019/09/10 14:22:15 by jbrigett          #+#    #+#             */
+/*   Updated: 2019/09/18 14:33:15 by jbrigett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SELECT_H
-# define FT_SELECT_H
+#include "libft.h"
 
-# include "termcap.h"
-# include <stdlib.h>
+char	*ft_strstr(const char *haystack, char const *needle)
+{
+	int i;
+	int tmp;
 
-#endif
+	if (!*needle)
+		return ((char*)haystack);
+	i = 0;
+	while (haystack[i])
+	{
+		if (haystack[i] == needle[0])
+		{
+			tmp = 1;
+			while (needle[tmp] != '\0' && haystack[tmp + i] == needle[tmp])
+				++tmp;
+			if (needle[tmp] == '\0')
+				return ((char*)&haystack[i]);
+		}
+		++i;
+	}
+	return (NULL);
+}

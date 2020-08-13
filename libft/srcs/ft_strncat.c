@@ -1,19 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_select.h                                        :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbrigett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/12 19:04:03 by jbrigett          #+#    #+#             */
-/*   Updated: 2020/08/12 19:10:44 by jbrigett         ###   ########.fr       */
+/*   Created: 2019/09/10 12:17:34 by jbrigett          #+#    #+#             */
+/*   Updated: 2019/09/10 12:17:38 by jbrigett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SELECT_H
-# define FT_SELECT_H
+#include "libft.h"
 
-# include "termcap.h"
-# include <stdlib.h>
+char	*ft_strncat(char *s1, const char *s2, size_t n)
+{
+	char		*dst;
+	const char	*src;
 
-#endif
+	if (n != 0)
+	{
+		dst = s1;
+		src = s2;
+		while (*dst)
+			dst++;
+		while (n-- != 0)
+		{
+			if ((*dst = *src++) == '\0')
+				break ;
+			dst++;
+		}
+		*dst = '\0';
+	}
+	return (s1);
+}

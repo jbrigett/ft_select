@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_select.h                                        :+:      :+:    :+:   */
+/*   print_p.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbrigett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/12 19:04:03 by jbrigett          #+#    #+#             */
-/*   Updated: 2020/08/12 19:10:44 by jbrigett         ###   ########.fr       */
+/*   Created: 2020/07/21 15:03:54 by jbrigett          #+#    #+#             */
+/*   Updated: 2020/07/21 15:03:57 by jbrigett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SELECT_H
-# define FT_SELECT_H
+#include "ft_printf.h"
 
-# include "termcap.h"
-# include <stdlib.h>
+void	print_p(t_format *frmt)
+{
+	void		*ptr;
+	uintmax_t	nb;
 
-#endif
+	ptr = va_arg(frmt->ap, void *);
+	nb = (uintmax_t)ptr;
+	frmt->base = 16;
+	frmt->pref = "0x";
+	frmt->fl |= POINTER;
+	frmt->fl |= SHARP;
+	settings_bxou(nb, frmt);
+}
