@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
 int	ft_printf(const char *format, ...)
 {
@@ -67,5 +67,5 @@ int	ft_dprintf(int fd, const char *format, ...)
 		va_end(frmt->ap);
 	}
 	free(frmt);
-	return (frmt->len);
+	return (frmt->to_print);
 }

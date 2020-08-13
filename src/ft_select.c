@@ -14,6 +14,6 @@
 
 int	main(int argc, char **argv, char **env)
 {
-	if (argc < 2 )
+	slct_errors(argc, argv, env);
 	return (0);
 }

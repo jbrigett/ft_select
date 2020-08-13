@@ -1,30 +1,18 @@
 NAME = ft_select
 CC = gcc
-FLAGS = -Wall -Werror -Wextra -O
+FLAGS = -Wall -Werror -Wextra
+TERMFLAG = -ltermcap
 LIBFT = libft.a
 
 CUR_DIR = $(shell pwd)
 O_DIR = $(CUR_DIR)/objs
-C_DIR = $(CUR_DIR)/srcs
+C_DIR = $(CUR_DIR)/src
 LIBFT_DIR = $(CUR_DIR)/libft
 
 HEADERS = $(LIBFT_DIR)/includes $(CUR_DIR)/includes
 
-FILES = err_dir \
-		format \
-		ft_dlst_count \
-		get_rights \
-		help \
-		help_dir \
-		main \
-		parser \
-		parser_1 \
-		parser_bigc \
-		parser_d \
-		parser_l \
-		parser_r \
-		parser_time \
-		sort
+FILES = slct_errors \
+		ft_select
 
 O_FILES = $(patsubst %, $(O_DIR)/%.o, $(FILES))
 C_FILES = $(patsubst %, $(C_DIR)/%.c, $(FILES))
@@ -36,7 +24,7 @@ o_dir:
 
 $(NAME): $(LIBFT) $(O_FILES)
 	@$(CC) $(FLAGS) $(patsubst %, -I %, $(HEADERS)) $(patsubst lib%.a, -l%, $(LIBFT)) \
-	-L$(LIBFT_DIR) $(O_FILES) -o $(NAME)
+	-L$(LIBFT_DIR) $(O_FILES) -o $(NAME) $(TERMFLAG)
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR) $(LIBFT)
