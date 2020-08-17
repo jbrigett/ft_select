@@ -1,5 +1,16 @@
-#include "ft_select.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sl_errors.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbrigett <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/17 16:15:33 by jbrigett          #+#    #+#             */
+/*   Updated: 2020/08/17 16:15:34 by jbrigett         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "ft_select.h"
 
 /*
 **	The getenv() function searches the environment list to find the
@@ -23,7 +34,6 @@
 **	The isatty() function shall test whether fildes,
 **	an open file descriptor, is associated with a terminal device.
 */
-
 void	sl_errors(int argc, char **argv, char **env)
 {
 	if (argc == 1)
@@ -47,4 +57,3 @@ void	sl_errors(int argc, char **argv, char **env)
 		exit(0);
 	}
 }
-

@@ -105,6 +105,17 @@ void				ft_exit(t_select *sl, int status);
 void				ft_restore(t_select *sl);
 
 /*
+** Signals handler
+*/
+void		sl_signals(t_select	*sl);
+t_select	*get_t_select(t_select **t);
+void	signal_handler(int s);
+void	size_changed(int s);
+void	restart(int s);
+void	suspend(int s);
+void	finish(int s);
+
+/*
 ** Initialization list of arguments
 */
 void				new_arg(t_select *sl, char *value);
@@ -114,7 +125,7 @@ void				delete_arg(t_select *sl);
 void				free_args(t_select *sl);
 
 /*
-** Keu pressed
+** Key pressed
 */
 void				on_key_pressed(t_select *sl);
 
