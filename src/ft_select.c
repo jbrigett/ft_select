@@ -6,7 +6,7 @@
 /*   By: jbrigett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 19:11:10 by jbrigett          #+#    #+#             */
-/*   Updated: 2020/08/12 19:11:12 by jbrigett         ###   ########.fr       */
+/*   Updated: 2020/08/17 18:40:11 by jbrigett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_exit(t_select *sl, int status)
 	exit(status);
 }
 
-int	main(int argc, char **argv, char **env)
+int		main(int argc, char **argv, char **env)
 {
 	t_select	*sl;
 
@@ -26,7 +26,6 @@ int	main(int argc, char **argv, char **env)
 	if (!(sl = (t_select *)malloc(sizeof(t_select))))
 		exit(0);
 	sl_init(sl, argc, argv);
-
 	on_key_pressed(sl);
 	ft_restore(sl);
 	free_args(sl);

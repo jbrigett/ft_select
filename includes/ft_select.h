@@ -6,7 +6,7 @@
 /*   By: jbrigett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 19:04:03 by jbrigett          #+#    #+#             */
-/*   Updated: 2020/08/12 19:10:44 by jbrigett         ###   ########.fr       */
+/*   Updated: 2020/08/17 18:38:22 by jbrigett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ typedef struct		s_select
 	t_args			*cur;
 	int				argc;
 	int				amount;
+	int				rows;
+	int				cols;
 }					t_select;
 
 /*
@@ -107,13 +109,23 @@ void				ft_restore(t_select *sl);
 /*
 ** Signals handler
 */
-void		sl_signals(t_select	*sl);
-t_select	*get_t_select(t_select **t);
-void	signal_handler(int s);
-void	size_changed(int s);
-void	restart(int s);
-void	suspend(int s);
-void	finish(int s);
+void				sl_signals(t_select	*sl);
+t_select			*get_t_select(t_select **t);
+void				signal_handler(int s);
+void				size_changed(int s);
+void				restart(int s);
+void				suspend(int s);
+void				finish(int s);
+
+/*
+** Printing args
+*/
+int					get_size(int flag);
+int					get_max_len(t_select *sl);
+void				print_args(t_arg *args, t_arg *first, t_select *sl);
+void				print_color(t_args *arg);
+int					get_cols(t_select *sl);
+void				sl_print(t_select *sl)
 
 /*
 ** Initialization list of arguments

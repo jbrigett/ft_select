@@ -6,7 +6,7 @@
 /*   By: jbrigett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 16:15:33 by jbrigett          #+#    #+#             */
-/*   Updated: 2020/08/17 16:15:34 by jbrigett         ###   ########.fr       */
+/*   Updated: 2020/08/17 18:44:31 by jbrigett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 **	to look up. Usually you would obtain this from the environment
 **	variable TERM using getenv ("TERM").
 **	If you are using the GNU version of termcap, you can alternatively ask
-**	tgetent to allocate enough space. Pass a null pointer for buffer, and tgetent
-**	itself allocates the storage using malloc. There is no way to get the address
+**	tgetent to allocate enough space. Pass a null pointer for buf, tgetent
+**	itself allocates the storage use malloc. There is no way to get the address
 **	that was allocated, and you shouldn't try to free the storage.
 **	The return value of tgetent is -1 if there is some difficulty accessing
 **	the data base of terminal types, 0 if the data base is accessible but the
@@ -43,7 +43,7 @@ void	sl_errors(int argc, char **argv, char **env)
 	}
 	if (!env[0] || !getenv("TERM"))
 	{
-		ft_dprintf(2, "Specify a terminal type with 'setenv TERM <yourtype>'.\n");
+		ft_dprintf(2, "Specify a terminal type with 'setenv TERM <type>'.\n");
 		exit(0);
 	}
 	if (tgetent(NULL, getenv("TERM")) == 0)

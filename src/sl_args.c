@@ -6,7 +6,7 @@
 /*   By: jbrigett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 16:15:26 by jbrigett          #+#    #+#             */
-/*   Updated: 2020/08/17 16:15:27 by jbrigett         ###   ########.fr       */
+/*   Updated: 2020/08/17 18:42:22 by jbrigett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,14 @@ void	delete_arg(t_select *sl)
 		sl->cur = active->next;
 	active->next->prev = active->prev;
 	active->prev->next = active->next;
-//	system_delete_arg(active->value);
+	system_delete_arg(active->value);
 	sl->argc--;
 	free(active->value);
 	active->value = NULL;
 	free(active);
 	active = NULL;
-//	if (!sl->argc)
-//		stop_signal_handler();
+	if (!sl->argc)
+		stop_signal_handler();
 }
 
 void	free_args(t_select *sl)

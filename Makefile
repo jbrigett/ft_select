@@ -26,7 +26,13 @@ HEADERS = $(LIBFT_DIR)/includes $(CUR_DIR)/includes
 FILES = sl_errors \
         sl_args \
         sl_struct \
+        sl_help \
+        sl_hz \
         sl_key_pressed \
+        sl_move \
+        sl_print \
+        sl_shandlers \
+        sl_signals \
 		ft_select
 
 O_FILES = $(patsubst %, $(O_DIR)/%.o, $(FILES))
