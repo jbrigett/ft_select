@@ -19,9 +19,12 @@
 **	The return value of tgetent is -1 if there is some difficulty accessing
 **	the data base of terminal types, 0 if the data base is accessible but the
 **	specified type is not defined in it, and some other value otherwise.
+**
+**	The isatty() function shall test whether fildes,
+**	an open file descriptor, is associated with a terminal device.
 */
 
-void	slct_errors(int argc, char **argv, char **env)
+void	sl_errors(int argc, char **argv, char **env)
 {
 	if (argc == 1)
 	{

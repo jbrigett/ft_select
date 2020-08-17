@@ -11,7 +11,10 @@ LIBFT_DIR = $(CUR_DIR)/libft
 
 HEADERS = $(LIBFT_DIR)/includes $(CUR_DIR)/includes
 
-FILES = slct_errors \
+FILES = sl_errors \
+        sl_args \
+        sl_struct \
+        sl_key_pressed \
 		ft_select
 
 O_FILES = $(patsubst %, $(O_DIR)/%.o, $(FILES))
