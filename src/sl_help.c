@@ -12,3 +12,10 @@
 
 #include "ft_select.h"
 
+int	get_size(int flag)
+{
+	struct winsize	term;
+
+	ioctl(STDERR_FILENO, TIOCGWINSZ, &term);
+	return ((flag) ? term.ws_col : term.ws_row);
+}
