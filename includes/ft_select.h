@@ -56,6 +56,16 @@
 # define RIGHT_K				26
 # define DOWN_K				4348699
 
+# define ESC 0x1B
+# define SPC 0x20
+# define ENR 0xA
+# define DEL 0x7E335B1B
+# define BKS 0x7F
+# define UP 0x415B1B
+# define DOWN 0x425B1B
+# define RIGHT 0x435B1B
+# define LEFT 0x445B1B
+
 /*
 ** Type is int type arg to make different colors
 ** for different files' types(part of bonus):
