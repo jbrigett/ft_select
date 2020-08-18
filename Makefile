@@ -27,7 +27,6 @@ FILES = sl_errors \
         sl_args \
         sl_struct \
         sl_help \
-        sl_hz \
         sl_key_pressed \
         sl_move \
         sl_print \

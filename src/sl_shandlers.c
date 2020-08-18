@@ -12,24 +12,17 @@
 
 #include "ft_select.h"
 
-void	finish(int s)
+void	sl_quit(int s)
 {
 	t_select *sl;
 
 	sl = NULL;
 	sl = get_t_select(&sl);
-	normal_mode(t);
-	t->term.c_lflag |= (ICANON | ECHO);
-	t->term.c_oflag |= OPOST;
-	tcsetattr(t->fd, TCSANOW, &t->term);
-	(s == -1) ? 0 : ft_putstr_fd(CL, 0);
-	ft_putstr_fd(VE, 0);
-	close(t->fd);
-	free(t->selected);
-	free(t);
+	sl_restore(sl);
+	free_args(sl);
 	exit(s);
 }
-
+/*
 void	suspend(int s)
 {
 	struct termios	t_attr;
@@ -74,15 +67,15 @@ void	restart(int s)
 	buf[1] = 0;
 	ioctl(0, TIOCSTI, buf);
 }
-
-void	size_changed(int s)
+*/
+void	sl_resize(int s)
 {
 	t_select *sl;
 
 	(void)s;
 	sl = NULL;
-	sl = get_t_select(&t);
+	sl = get_t_select(&sl);
 	if (tgetent(NULL, getenv("TERM")) <= 0)
-		ERROR_EXIT;
-	print_items(t);
+		sl_quit(0);
+	sl_print(sl);
 }

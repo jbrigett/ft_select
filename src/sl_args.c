@@ -83,14 +83,14 @@ void	delete_arg(t_select *sl)
 		sl->cur = active->next;
 	active->next->prev = active->prev;
 	active->prev->next = active->next;
-	system_delete_arg(active->value);
+//	system_delete_arg(active->value);
 	sl->argc--;
 	free(active->value);
 	active->value = NULL;
 	free(active);
 	active = NULL;
-	if (!sl->argc)
-		stop_signal_handler();
+//	if (!sl->argc)
+//		stop_signal_handler();
 }
 
 void	free_args(t_select *sl)

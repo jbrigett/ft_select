@@ -12,12 +12,6 @@
 
 #include "ft_select.h"
 
-void	ft_exit(t_select *sl, int status)
-{
-	free_args(sl);
-	exit(status);
-}
-
 int		main(int argc, char **argv, char **env)
 {
 	t_select	*sl;
@@ -27,7 +21,6 @@ int		main(int argc, char **argv, char **env)
 		exit(0);
 	sl_init(sl, argc, argv);
 	on_key_pressed(sl);
-	ft_restore(sl);
-	free_args(sl);
+	sl_quit(0);
 	return (0);
 }

@@ -12,60 +12,26 @@
 
 #include "ft_select.h"
 
-
-static void	move_up(void)
+void	move_up(t_select *sl)
 {
 	int		i;
-	t_arg	*tmp;
-	int		cols;
+	t_args	*tmp;
 
 	i = 0;
-	tmp = *g_select.active_arg;
-	cols = count_columns();
-	while (++i < cols)
+	tmp = sl->cur;
+	while (++i < sl->cols)
 		tmp = tmp->prev;
-	g_select.active_arg = &tmp->prev;
+	sl->cur = tmp->prev;
 }
 
-/*
-** Moves down the argument list
-**
-** @param		N/A
-** @return		N/A
-*/
-
-static void	move_down(void)
+void	move_down(t_select *sl)
 {
 	int		i;
-	t_arg	*tmp;
-	int		cols;
+	t_args	*tmp;
 
 	i = 0;
-	tmp = *g_select.active_arg;
-	cols = count_columns();
-	while (++i < cols)
+	tmp = sl->cur;
+	while (++i < sl->cols)
 		tmp = tmp->next;
-	g_select.active_arg = &tmp->next;
-}
-
-/*
-** Provides argument browsing capabilities using the arrow keys
-**
-** @param		direction		the direction in which to go
-** @return		N/A
-*/
-
-void		move(t_dir direction)
-{
-	t_arg		*active;
-
-	active = *g_select.active_arg;
-	if (direction == RIGHT_DIR)
-		g_select.active_arg = &active->next;
-	else if (direction == LEFT_DIR)
-		g_select.active_arg = &active->prev;
-	else if (direction == UP_DIR)
-		move_up();
-	else if (direction == DOWN_DIR)
-		move_down();
+	sl->cur = tmp->next;
 }

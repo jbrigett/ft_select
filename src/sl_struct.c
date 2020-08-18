@@ -62,28 +62,25 @@
 **	cl  -  Clear screen and home cursor
 */
 
-static int	ft_putc(int c)
+int		ft_putc(int c)
 {
 	return (write(1, &c, 1));
 }
 
-void        sl_set_term*(t_select *sl)
-
-
-void		sl_init(t_select *sl, int argc, char **argv)
+void	sl_init(t_select *sl, int argc, char **argv)
 {
 	int	i;
 
 	i = -1;
 	if (tcgetattr(0, &sl->old_attr) < 0)
-		ft_exit(sl, 1);
+		sl_quit(1);
 	if (tcgetattr(0, &sl->new_attr) < 0)
-		ft_exit(sl, 1);
+		sl_quit(1);
 	sl->new_attr.c_lflag &= (~ICANON | ~ECHO);
 	sl->new_attr.c_cc[VMIN] = 1;
 	sl->new_attr.c_cc[VTIME] = 0;
 	if (tcsetattr(0, TCSANOW, &sl->new_attr) < 0)
-		ft_exit(sl, 1);
+		sl_quit(1);
 	sl->amount = 0;
 	tputs(tgetstr("cl", NULL), 1, ft_putc);
 	tputs(tgetstr("vi", NULL), 1, ft_putc);
@@ -92,9 +89,10 @@ void		sl_init(t_select *sl, int argc, char **argv)
 		new_arg(sl, argv[i]);
 }
 
-void	ft_restore(t_select *sl)
+void	sl_restore(t_select *sl)
 {
+	sl->cols = 0;
 	if (tcsetattr(0, TCSANOW, &sl->old_attr) < 0)
-		ft_exit(sl, 1);
+		sl_quit(1);
 }
 

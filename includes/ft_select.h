@@ -47,14 +47,14 @@
 # define ENTER_K	10
 # define ESC_K		27
 # define SPACEBAR	32
-# define A_K			65
-# define Z_K			90
-# define DELETE_K	126
+# define A_K		65
+# define Z_K		90
 # define BACKSPACE	127
-# define LEFT_K				27
-# define UP_K					4283163
-# define RIGHT_K				26
-# define DOWN_K				4348699
+# define LEFT_K		4479771
+# define UP_K		4283163
+# define RIGHT_K	4414235
+# define DOWN_K		4348699
+# define DELETE_K	2117294875L
 
 # define ESC 0x1B
 # define SPC 0x20
@@ -103,8 +103,7 @@ typedef struct		s_select
 */
 void				sl_errors(int argc, char **argv, char **env);
 void				sl_init(t_select *sl, int argc, char **argv);
-void				ft_exit(t_select *sl, int status);
-void				ft_restore(t_select *sl);
+void				sl_restore(t_select *sl);
 
 /*
 ** Signals handler
@@ -112,21 +111,26 @@ void				ft_restore(t_select *sl);
 void				sl_signals(t_select	*sl);
 t_select			*get_t_select(t_select **t);
 void				signal_handler(int s);
-void				size_changed(int s);
+void				sl_resize(int s);
 void				restart(int s);
 void				suspend(int s);
-void				finish(int s);
 
 /*
 ** Printing args
 */
 int					get_size(int flag);
 int					get_max_len(t_select *sl);
-void				print_args(t_arg *args, t_arg *first, t_select *sl);
+void				print_args(t_args *first, t_select *sl);
 void				print_color(t_args *arg);
 int					get_cols(t_select *sl);
-void				sl_print(t_select *sl)
+void				sl_print(t_select *sl);
+void				sl_quit(int s);
 
+/*
+** Move between args
+*/
+void				move_down(t_select *sl);
+void				move_up(t_select *sl);
 /*
 ** Initialization list of arguments
 */
@@ -140,5 +144,6 @@ void				free_args(t_select *sl);
 ** Key pressed
 */
 void				on_key_pressed(t_select *sl);
+int					ft_putc(int c);
 
 #endif

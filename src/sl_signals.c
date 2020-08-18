@@ -14,14 +14,14 @@
 
 void	signal_handler(int s)
 {
-	else if (s == SIGTSTP)
-		ft_suspend();
-	else if (s == SIGCONT)
-		ft_continue();
-	else if (s == SIGWINCH)
-		ft_resize();
+//	if (s == SIGTSTP)
+//		ft_suspend(s);
+//	else if (s == SIGCONT)
+//		ft_continue(s);
+	if (s == SIGWINCH)
+		sl_resize(s);
 	else
-		ft_quit();
+		sl_quit(s);
 }
 
 t_select	*get_t_select(t_select **t)
@@ -34,11 +34,11 @@ t_select	*get_t_select(t_select **t)
 	return (*t);
 }
 
-void		sl_signals(t_select	*sl);
+void		sl_signals(t_select	*sl)
 {
 	int s;
 
-	sl = get_t_select(&sl)
+	sl = get_t_select(&sl);
 	s = 0;
 	while (++s < 32)
 		signal(s, signal_handler);

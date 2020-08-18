@@ -11,11 +11,11 @@
 /* ************************************************************************** */
 #include "ft_select.h"
 
-int			get_cols(t_select *sl)
+int		get_cols(t_select *sl)
 {
 	int count;
 
-	count = get_term_size(1) / (count_max_arg_len() + 1);
+	count = get_size(1) / (get_max_len(sl) + 1);
 	(!count) ? count = 1 : 0;
 	((get_max_len(sl) + 1) * sl->argc < get_size(1)) ? count = sl->argc : 0;
 	return (count);
@@ -28,10 +28,10 @@ int		get_max_len(t_select *sl)
 	t_args	*first;
 	t_args	*tmp;
 
-	if (!sl->arg || !sl->args->value)
+	if (!sl->arg || !sl->arg->value)
 		return (0);
 	max = 0;
-	tmp = t->arg;
+	tmp = sl->arg;
 	first = tmp;
 	while (tmp)
 	{
@@ -55,7 +55,7 @@ void    print_color(t_args *arg)
 	ft_putstr_fd(ST_COL, 2);
 }
 
-void	print_args(t_arg *first, t_select *sl)
+void	print_args(t_args *first, t_select *sl)
 {
 	int		i;
 	int		j;
@@ -81,15 +81,15 @@ void	print_args(t_arg *first, t_select *sl)
 	}
 }
 
-void		sl_print(t_select *sl)
+void	sl_print(t_select *sl)
 {
 	if (!sl->arg || get_max_len(sl) > get_size(1))
 		return ;
-	tputs(tgetstr("cl", NULL), 1, ft_printnbr);
+	tputs(tgetstr("cl", NULL), 1, ft_putc);
 	sl->cols = get_cols(sl);
 	sl->rows = sl->argc / sl->cols;
 	if (sl->rows > get_size(0))
 		return ;
-	(al->argc % sl->cols) rows += 1 : 0;
+	(sl->argc % sl->cols) ? sl->rows += 1 : 0;
 	print_args(sl->arg, sl);
 }
