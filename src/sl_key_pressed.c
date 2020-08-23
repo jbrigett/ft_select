@@ -19,8 +19,7 @@ void	on_key_pressed(t_select *sl)
 	while (21)
 	{
 		sl_print(sl);
-		c = 0;
-		read(2, &c, 8);
+		read(0, &c, 8);
 		if (c == ENTER_K)
 			break ;
 		else if (c == UP_K)

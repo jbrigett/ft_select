@@ -51,8 +51,8 @@ void    print_color(t_args *arg)
 	(arg->type == 3) ? ft_putstr_fd(AT_COL, 2) : 0;
 	(arg->type == 4) ? ft_putstr_fd(MT_COL, 2) : 0;
 	(arg->type == 5) ? ft_putstr_fd(DT_COL, 2) : 0;
-	ft_putstr_fd(arg->value, 2);
-	ft_putstr_fd(ST_COL, 2);
+	ft_putstr_fd(arg->value, 0);
+	ft_putstr_fd(ST_COL, 0);
 }
 
 void	print_args(t_args *first, t_select *sl)
@@ -72,12 +72,12 @@ void	print_args(t_args *first, t_select *sl)
 			print_color(sl->arg);
 			len = ft_strlen(sl->arg->value);
 			while (len++ <= get_max_len(sl))
-				ft_putstr_fd(" ", 2);
+				ft_putstr_fd(" ", 0);
 			if (sl->arg->next == first)
 				break ;
 			sl->arg = sl->arg->next;
 		}
-		ft_putstr_fd("\n", 2);
+		ft_putstr_fd("\n", 0);
 	}
 }
 

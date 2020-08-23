@@ -19,7 +19,7 @@ void	sl_quit(int s)
 	sl = NULL;
 	sl = get_t_select(&sl);
 	sl_restore(sl);
-	free_args(sl);
+//	free_args(sl);
 	exit(s);
 }
 /*

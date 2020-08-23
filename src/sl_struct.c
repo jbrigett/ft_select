@@ -71,15 +71,18 @@ void	sl_init(t_select *sl, int argc, char **argv)
 {
 	int	i;
 
-	i = -1;
-	if (tcgetattr(0, &sl->old_attr) < 0)
+	i = 0;
+	if ((sl->fd = open(ttyname(0), O_RDWR | O_NDELAY)) < 0)
 		sl_quit(1);
-	if (tcgetattr(0, &sl->new_attr) < 0)
+	if (tcgetattr(sl->fd, &sl->old_attr) < 0)
 		sl_quit(1);
-	sl->new_attr.c_lflag &= (~ICANON | ~ECHO);
+	if (tcgetattr(sl->fd, &sl->new_attr) < 0)
+		sl_quit(1);
+	sl->new_attr.c_lflag &= ~(ICANON | ECHO);
+	sl->new_attr.c_oflag &= ~(OPOST);
 	sl->new_attr.c_cc[VMIN] = 1;
 	sl->new_attr.c_cc[VTIME] = 0;
-	if (tcsetattr(0, TCSANOW, &sl->new_attr) < 0)
+	if (tcsetattr(sl->fd, TCSANOW, &sl->new_attr) < 0)
 		sl_quit(1);
 	sl->amount = 0;
 	tputs(tgetstr("cl", NULL), 1, ft_putc);
@@ -92,7 +95,7 @@ void	sl_init(t_select *sl, int argc, char **argv)
 void	sl_restore(t_select *sl)
 {
 	sl->cols = 0;
-	if (tcsetattr(0, TCSANOW, &sl->old_attr) < 0)
+	if (tcsetattr(sl->fd, TCSANOW, &sl->old_attr) < 0)
 		sl_quit(1);
 }
 

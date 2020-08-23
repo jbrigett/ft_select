@@ -19,6 +19,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <term.h>
+# include <sys/ioctl.h>
+# include <sys/types.h>
+# include <fcntl.h>
 # include "ft_printf.h"
 
 /*	An ANSI escape sequence has the format `ESC[X;Ym', where `ESC' is
@@ -44,7 +47,7 @@
 # define CT_COL		"\033[35m"
 # define OT_COL		"\033[36m"
 
-# define ENTER_K	10
+# define ENTER_K	0x1B
 # define ESC_K		27
 # define SPACEBAR	32
 # define A_K		65
@@ -96,6 +99,7 @@ typedef struct		s_select
 	int				amount;
 	int				rows;
 	int				cols;
+	int				fd;
 }					t_select;
 
 /*
