@@ -47,27 +47,17 @@
 # define CT_COL		"\033[35m"
 # define OT_COL		"\033[36m"
 
-# define ENTER_K	0x1B
-# define ESC_K		27
-# define SPACEBAR	32
+# define ENTER_K	0xA
+# define ESC_K		0x1B
+# define SPACEBAR	0x20
 # define A_K		65
 # define Z_K		90
-# define BACKSPACE	127
-# define LEFT_K		4479771
-# define UP_K		4283163
-# define RIGHT_K	4414235
-# define DOWN_K		4348699
-# define DELETE_K	2117294875L
-
-# define ESC 0x1B
-# define SPC 0x20
-# define ENR 0xA
-# define DEL 0x7E335B1B
-# define BKS 0x7F
-# define UP 0x415B1B
-# define DOWN 0x425B1B
-# define RIGHT 0x435B1B
-# define LEFT 0x445B1B
+# define BACKSPACE	0x7F
+# define LEFT_K		0x445B1B
+# define UP_K		0x415B1B
+# define RIGHT_K	0x435B1B
+# define DOWN_K		0x425B1B
+# define DELETE_K	0x7E335B1B
 
 /*
 ** Type is int type arg to make different colors
@@ -116,8 +106,8 @@ void				sl_signals(t_select	*sl);
 t_select			*get_t_select(t_select **t);
 void				signal_handler(int s);
 void				sl_resize(int s);
-void				restart(int s);
-void				suspend(int s);
+void				sl_restart(int s);
+void				sl_suspend(int s);
 
 /*
 ** Printing args

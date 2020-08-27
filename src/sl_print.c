@@ -85,7 +85,7 @@ void	sl_print(t_select *sl)
 {
 	if (!sl->arg || get_max_len(sl) > get_size(1))
 		return ;
-	tputs(tgetstr("cl", NULL), 1, ft_putc);
+	ft_putstr_fd(tgetstr("cl", NULL), 0);
 	sl->cols = get_cols(sl);
 	sl->rows = sl->argc / sl->cols;
 	if (sl->rows > get_size(0))

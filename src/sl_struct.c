@@ -85,8 +85,7 @@ void	sl_init(t_select *sl, int argc, char **argv)
 	if (tcsetattr(sl->fd, TCSANOW, &sl->new_attr) < 0)
 		sl_quit(1);
 	sl->amount = 0;
-	tputs(tgetstr("cl", NULL), 1, ft_putc);
-	tputs(tgetstr("vi", NULL), 1, ft_putc);
+	ft_putstr_fd(tgetstr("vi", NULL), 0);
 	sl->argc = argc;
 	while(argv[++i])
 		new_arg(sl, argv[i]);
@@ -94,7 +93,6 @@ void	sl_init(t_select *sl, int argc, char **argv)
 
 void	sl_restore(t_select *sl)
 {
-	sl->cols = 0;
 	if (tcsetattr(sl->fd, TCSANOW, &sl->old_attr) < 0)
 		sl_quit(1);
 }
